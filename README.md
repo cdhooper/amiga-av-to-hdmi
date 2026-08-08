@@ -18,6 +18,10 @@ All board versions use software for the Raspberry Pi Zero that is developed
 by hoglet67's multi-platform vintage hardware RGBtoHDMI project:
     https://github.com/hoglet67/RGBtoHDMI
 
+How to set up FlashFloppy OSD support:
+    https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections
+    https://github.com/keirf/flashfloppy/wiki/Hardware-Mods#oled-display
+
 ----------------------------------------------------------------------
 
 The Rev1 board was designed to provide a few options (OCS Denise only):
