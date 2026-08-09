@@ -4,7 +4,7 @@ The **Amiga Pi to HDMI** board is an open-source video, audio, and FlashFloppy i
 
 The primary function is to capture the Amiga's native video and with RGBtoHDMI, produce HDMI video on a connector at the rear of the Amiga.
 
-The current hardware integrates:
+Features include:
 
 - **Raspberry Pi video processing** using the RGBtoHDMI software.
 - **HD Audio capture**, allowing Amiga audio to be digitised by the board.
@@ -14,6 +14,8 @@ The current hardware integrates:
 - **USB-C console for the STM32** providing easy access to load firmware and configure the FlashFloppy OSD
 
 The board is designed for the A2000 and A3000 Video Slot. It also works with the A4000, but is limited to 12-bit capture of the AGA 24-bit video, and only with OCS video modes.
+
+<IMG SRC="img/2026_08_09_amiga_av_to_hdmi.jpg" WIDTH="50%">
 
 ## Hardware revisions
 
