@@ -1,0 +1,78 @@
+
+// START //
+
+
+dif暺*� 3d30 7513
+HSE=7157300 Hz
+
+** FF OSD v1.9.c1 **
+** Keir Fraser <keir.xen@gmail.com>
+** https://github.com/keirf/FF_OSD
+
+HSEclk=7157300 Hz
+Sysclk=57258400 Hz
+
+Config corrupt: Resetting to Factory Defaults
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff ff ff
+ ff ff ff ff ff ff
+
+Current config:
+ Sync Polarity: Low
+ Pixel Timing: 15kHz
+ Display Height: Normal
+ Display Output: PB15/SPI2
+ Display Enable: None
+ H.Off: 42, Sub: 0
+ V.Off: 50
+ Rows: 2
+ Columns: 16-40
+
+Keys:
+ Space: Select
+ O: Down
+ P: Up
+

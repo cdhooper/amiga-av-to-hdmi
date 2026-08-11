@@ -1,0 +1,53 @@
+DEV=/ttyUSB6 make flash
+make -C src -f /net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/Rules.mk FF_OSD.elf FF_OSD.bin FF_OSD.hex
+make[1]: Entering directory '/net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/src'
+CC build_info.o
+LD FF_OSD.elf
+chmod a-x FF_OSD.elf
+OBJCOPY FF_OSD.bin
+chmod a-x FF_OSD.bin
+OBJCOPY FF_OSD.hex
+chmod a-x FF_OSD.hex
+make[1]: Leaving directory '/net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/src'
+st-flash --reset write src/FF_OSD.bin 0x08000000
+st-flash 1.8.0-89-gf2ad364
+2026-08-10T16:33:06 INFO common_legacy.c: STM32F1xx_MD: 20 KiB SRAM, 64 KiB flash in at least 1 KiB pages.
+file src/FF_OSD.bin md5 checksum: 34bda81836ad6d42e84eca6cfcf25a6, stlink checksum: 0x001556eb
+2026-08-10T16:33:06 INFO common_flash.c: Attempting to write 14680 (0x3958) bytes to stm32 address: 134217728 (0x8000000)
+-> Flash page at 0x8000000 erased (size: 0x400)
+-> Flash page at 0x8000400 erased (size: 0x400)
+-> Flash page at 0x8000800 erased (size: 0x400)
+-> Flash page at 0x8000c00 erased (size: 0x400)
+-> Flash page at 0x8001000 erased (size: 0x400)
+-> Flash page at 0x8001400 erased (size: 0x400)
+-> Flash page at 0x8001800 erased (size: 0x400)
+-> Flash page at 0x8001c00 erased (size: 0x400)
+-> Flash page at 0x8002000 erased (size: 0x400)
+-> Flash page at 0x8002400 erased (size: 0x400)
+-> Flash page at 0x8002800 erased (size: 0x400)
+-> Flash page at 0x8002c00 erased (size: 0x400)
+-> Flash page at 0x8003000 erased (size: 0x400)
+-> Flash page at 0x8003400 erased (size: 0x400)
+-> Flash page at 0x8003800 erased (size: 0x400)
+
+2026-08-10T16:33:07 INFO flash_loader.c: Starting Flash write for VL/F0/F3/F1_XL
+2026-08-10T16:33:07 INFO flash_loader.c: Successfully loaded flash loader in sram
+2026-08-10T16:33:07 INFO flash_loader.c: Clear DFSR
+  1/15  pages written
+  2/15  pages written
+  3/15  pages written
+  4/15  pages written
+  5/15  pages written
+  6/15  pages written
+  7/15  pages written
+  8/15  pages written
+  9/15  pages written
+ 10/15  pages written
+ 11/15  pages written
+ 12/15  pages written
+ 13/15  pages written
+ 14/15  pages written
+ 15/15  pages written
+
+2026-08-10T16:33:08 INFO common_flash.c: Starting verification of write complete
+2026-08-10T16:33:08 INFO common_flash.c: Flash written and verified! jolly good!

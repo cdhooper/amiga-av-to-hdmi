@@ -1,0 +1,74 @@
+% DEV=/dev/ttyUSB6 make dfu
+make -C src -f /net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/Rules.mk FF_OSD.elf FF_OSD.bin FF_OSD.hex
+make[1]: Entering directory '/net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/src'
+CC build_info.o
+LD FF_OSD.elf
+chmod a-x FF_OSD.elf
+OBJCOPY FF_OSD.bin
+chmod a-x FF_OSD.bin
+OBJCOPY FF_OSD.hex
+chmod a-x FF_OSD.hex
+make[1]: Leaving directory '/net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/src'
+using DEV=/dev/ttyUSB6 to program via serial DFU
+sudo /usr/local/STMCubeProgrammer/bin/STM32_Programmer_CLI -c port=/dev/ttyUSB6 br=115200 -v -w src/FF_OSD.bin 0x08000000
+Detected locale "C" with character encoding "ANSI_X3.4-1968", which is not UTF-8.
+Qt depends on a UTF-8 locale, and has switched to "C.UTF-8" instead.
+If this causes problems, reconfigure your locale. See the locale(1) manual
+for more information.
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.22.0                  
+      -------------------------------------------------------------------
+
+Serial Port /dev/ttyUSB6 is successfully opened.
+Port configuration: parity = even, baudrate = 115200, data-bit = 8,                     stop-bit = 1.0, flow-control = off
+Activating device: OK
+Board       : --
+Chip ID: 0x410 
+BootLoader protocol version: 2.2
+Device name : STM32F101/F102/F103 Medium-density
+NVM size  : 128 KBytes (default)
+Device type : MCU
+Revision ID : --  
+Device CPU  : Cortex-M3
+
+
+Opening and parsing file: FF_OSD.bin
+
+
+Memory Programming ...
+  File          : FF_OSD.bin
+  Size          : 14.34 KB 
+  Address       : 0x08000000
+
+
+Erasing memory corresponding to segment 0:
+Erasing internal memory sectors [0 14]
+Download in Progress:
+[==================================================] 100% 
+
+File download complete
+Time elapsed during download operation: 00:00:02.571
+sudo /usr/local/STMCubeProgrammer/bin/STM32_Programmer_CLI -c port=/dev/ttyUSB6 br=115200 -g 0x08000000
+Detected locale "C" with character encoding "ANSI_X3.4-1968", which is not UTF-8.
+Qt depends on a UTF-8 locale, and has switched to "C.UTF-8" instead.
+If this causes problems, reconfigure your locale. See the locale(1) manual
+for more information.
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.22.0                  
+      -------------------------------------------------------------------
+
+Serial Port /dev/ttyUSB6 is successfully opened.
+Port configuration: parity = even, baudrate = 115200, data-bit = 8,                     stop-bit = 1.0, flow-control = off
+Activating device: OK
+Board       : --
+Chip ID: 0x410 
+BootLoader protocol version: 2.2
+Device name : STM32F101/F102/F103 Medium-density
+NVM size  : 128 KBytes (default)
+Device type : MCU
+Revision ID : --  
+Device CPU  : Cortex-M3
+
+RUNNING Program ... 
+  Address:      : 0x8000000
+Start operation achieved successfully

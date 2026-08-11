@@ -1,21 +1,17 @@
-# Amiga Pi to HDMI
+# Amiga AV to HDMI
 
-The **Amiga Pi to HDMI** board is an open-source video, audio, and FlashFloppy interface for big-box Amiga computers. It plugs into the Amiga Video Slot and uses Raspberry Pi running [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI) with several additional functions on a single board.
+The **Amiga AV to HDMI** board is an open-source video, audio, and FlashFloppy interface for big-box Amiga computers. It plugs into the Amiga Video Slot and converts to HDMI usign a Raspberry Pi running [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI). Features:
 
-The primary function is to capture the Amiga's native video and with RGBtoHDMI, produce HDMI video on a connector at the rear of the Amiga.
-
-Features include:
-
-- **Raspberry Pi video processing** using the RGBtoHDMI software.
-- **HD Audio capture**, allowing Amiga audio to be digitised by the board.
-- **STM32F103 "Blue Pill" FlashFloppy OSD controller**, providing an on-screen display for FlashFloppy and allowing the Amiga keyboard to control FlashFloppy.
-- **HDMI switching**, allowing the Pi-generated video to be switched with a second HDMI video source connected internally.
-- **Rear-facing HDMI output**, so the Amiga can be connected to a normal HDMI display without an external video adapter.
-- **USB-C console for the STM32** providing easy access to load firmware and configure the FlashFloppy OSD
+- **Raspberry Pi HDMI output** using the RGBtoHDMI software.
+- **HD Audio capture**, allowing Amiga audio to be included.
+- **Integrated FlashFloppy OSD**, providing an on-screen display for FlashFloppy and allowing Amiga keyboard to control FlashFloppy.
+- **HDMI switching**, the Pi HDMI or a second HDMI video source can be selected for output.
+- **Rear-facing HDMI output**, allowing full size attachment of HDMI to your Amiga.
+- **USB-C console** to configure or program FlashFloppy OSD
 
 The board is designed for the A2000 and A3000 Video Slot. It also works with the A4000, but is limited to 12-bit capture of the AGA 24-bit video, and only with OCS video modes.
 
-<IMG SRC="img/2026_08_09_amiga_av_to_hdmi.jpg" WIDTH="50%">
+<IMG SRC="img/2026_08_09_amiga_av_to_hdmi.jpg" WIDTH="70%">
 
 ## Hardware revisions
 
@@ -67,11 +63,9 @@ The STM32F103 is connected to the FlashFloppy Gotek and to the Amiga keyboard. I
 
 ## Raspberry Pi software
 
-The Raspberry Pi runs the multi-platform vintage-hardware [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI) software.
+The Raspberry Pi runs the multi-platform vintage-hardware [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI) software, which does Amiga video conversion to HDMI.
 
-RGBtoHDMI provides the real-time capture and display processing. The board supplies the Amiga-specific video capture hardware and routes the resulting HDMI signal through the onboard HDMI switch.
-
-Consult the RGBtoHDMI documentation for Raspberry Pi software installation, SD-card preparation, configuration files, profiles, and display settings.
+Consult the RGBtoHDMI documentation for Raspberry Pi software installation, SD-card preparation, configuration files, profiles, and display settings. It is recommened that you use "Amiga 2000" for the profile, and "Amiga 2000 60Hz" or "Amiga 2000 50 Hz" for the Sub-Profile.
 
 ## FlashFloppy OSD software
 
@@ -81,13 +75,10 @@ The STM32F103 firmware used by this board is maintained separately:
 
 This is a board-specific fork of [keirf/flashfloppy-osd](https://github.com/keirf/flashfloppy-osd). It provides:
 
-- FlashFloppy OSD output on the Amiga display.
-- Optional Amiga keyboard control of FlashFloppy.
-- The LCD I2C interface expected by FlashFloppy-compatible hardware.
+- FlashFloppy OSD output on the Pi's HDMI display.
+- Optional Amiga keyboard control of FlashFloppy and the OSD.
 
-See [FlashFloppy OSD](doc/flashfloppy_osd.md) for board-specific installation instructions.
-
-The upstream FF OSD project documents the general FlashFloppy connection scheme and the required I2C pull-ups. The board-specific firmware and schematic should be treated as authoritative for this hardware.
+See [FlashFloppy OSD](doc/flashfloppy_osd.md) for board-specific installation and configuration instructions.
 
 ## FlashFloppy configuration
 
@@ -139,4 +130,4 @@ This project is intended to be buildable from the published hardware design file
 
 ## License
 
-See the license files included in this repository and in the component projects linked above.
+See the [license file](LICENSE.md) included in this repository and in the component projects linked above.
