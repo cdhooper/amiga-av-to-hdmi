@@ -1,3 +1,4 @@
+<PRE><CODE>
 DEV=/ttyUSB6 make flash
 make -C src -f /net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/Rules.mk FF_OSD.elf FF_OSD.bin FF_OSD.hex
 make[1]: Entering directory '/net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/src'
@@ -51,3 +52,4 @@ file src/FF_OSD.bin md5 checksum: 34bda81836ad6d42e84eca6cfcf25a6, stlink checks
 
 2026-08-10T16:33:08 INFO common_flash.c: Starting verification of write complete
 2026-08-10T16:33:08 INFO common_flash.c: Flash written and verified! jolly good!
+</CODE></PRE>

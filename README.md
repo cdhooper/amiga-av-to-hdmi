@@ -54,10 +54,10 @@ The STM32F103 is connected to the FlashFloppy Gotek and to the Amiga keyboard. I
 | Document | Description |
 | --- | --- |
 | [Hardware Revisions](doc/hw_revisions.md) | Hardware revision history and the major differences between revisions. |
-| [Hardware Build Guide](doc/hardware_build.md) | Building the PCB, installing components, programming the programmable devices, and installing the Raspberry Pi. |
-| [Hardware Configuration](doc/hardware_configuration.md) | Configuration of the Raspberry Pi, video capture, HDMI routing, audio, and STM32 interfaces. |
+| [Hardware Build Guide](doc/hw_build.md) | Building the PCB, installing components, programming the programmable devices, and installing the Raspberry Pi. |
+| [Hardware Configuration](doc/hw_config.md) | Configuration of the Raspberry Pi, video capture, HDMI routing, audio, and STM32 interfaces. |
 | [FlashFloppy OSD](doc/flashfloppy_osd.md) | Building and installing the custom STM32F103 FF OSD firmware and connecting it to FlashFloppy. |
-| [Amiga Installation](doc/amiga_installation.md) | Installing the completed board in an A2000/A3000 and connecting the peripheral wiring. |
+| [Amiga Installation](doc/amiga_install.md) | Installing the completed board in an A2000/A3000 and connecting the peripheral wiring. |
 | [Using the Board](doc/usage.md) | Normal operation, HDMI switching, FlashFloppy OSD, keyboard control, and audio. |
 | [Troubleshooting](doc/troubleshooting.md) | Diagnostic information for common installation and operating problems. |
 
@@ -100,7 +100,7 @@ Before ordering or assembling a board:
 4. Use the revision-specific BOM rather than assuming that a component from another revision is interchangeable.
 5. Complete programming and configuration before installing the board in an Amiga.
 
-See [Hardware Build Guide](doc/hardware_build.md).
+See [Hardware Build Guide](doc/hw_build.md).
 
 ## Installing in an Amiga
 
@@ -110,11 +110,7 @@ The board is intended to plug directly into the Video Slot. The Raspberry Pi and
 
 See [Hardware Revisions](doc/hw_revisions.md) and the assembly documentation before fitting the Pi.
 
-See [Amiga Installation](doc/amiga_installation.md).
-
-## A4000 limitations
-
-The board can be used with an A4000, but the current design does not provide the full AGA 24-bit video path. The documented limitation is **12-bit video and OCS resolution screen modes**. Only OCS video modes are supported by RGBtoHDMI.
+See [Amiga Installation](doc/amiga_install.md).
 
 ## Design background
 

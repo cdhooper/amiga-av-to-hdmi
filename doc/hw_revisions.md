@@ -1,10 +1,10 @@
 # Hardware Revisions
 
-This document records the major hardware changes in the Amiga Pi to HDMI board.
+This document records the major hardware changes in the Amiga AV to HDMI board.
 
-The board has gone through several generations. The later revisions should not be treated as drop-in replacements for the earlier designs.
+The board has gone through several iterations, each improving on the previous.
 
-## Rev1
+## Rev1 (2021-02-06)
 
 The Rev1 design is based on the Denise-socket [Amiga-Digital-Video](https://github.com/c0pperdragon/Amiga-Digital-Video) design for OCS and ECS Amigas using a 48-pin DIP Denise.
 
@@ -16,7 +16,7 @@ The original board provided several Raspberry Pi mounting/output options:
 
 The Rev1 Raspberry Pi mounting arrangements required the Pi to be mounted face-up. Depending on the Pi model and connector arrangement, this could require modification of the Pi's connector arrangement.
 
-## Rev2
+## Rev2 (2021-03-22)
 
 Rev2 added:
 
@@ -28,7 +28,7 @@ Rev2 added:
 
 The preferred Rev2 Pi mounting arrangement remained face-up, with the middle Pi connector option providing the alternate orientation.
 
-## Rev3
+## Rev3 (2021-05-16)
 
 Rev3 changed the video capture architecture substantially.
 
@@ -47,17 +47,17 @@ Additional Rev3 changes:
 
 The face-down orientation is useful because most Raspberry Pi boards have their GPIO headers installed on the top side.
 
-## Rev4
+## Rev4 (2021-07-18)
 
 Rev4 fixed several Rev3 errata and became the stable released version for several years.
 
 In all models pay particular attention to Raspberry Pi orientation. The microSD slot must face **away from the Amiga card edge**. Incorrect orientation can result in electrical or mechanical damage.
 
-## Rev5
+## Rev5 (2026-04-03)
 
 Rev5 contains minor improvements over Rev4 but was never released.
 
-## Rev6
+## Rev6 (2026-05-10)
 
 Rev6 is the first major integration release.
 
@@ -69,17 +69,17 @@ It adds:
 
 This revision changes the board from primarily a video capture adapter into an integrated Amiga Audio/Video/Gotek OSD platform.
 
-## Rev7
+## Rev7 (2026-06-03)
 
 Rev7 fixes bugs in Rev6 and adds a **CH340 USB-to-serial interface** for the STM32F103.
 
 The USB-to-serial interface is intended to simplify STM32 development, programming, and diagnostics.
 
-## Rev7.1
+## Rev7.1 (2026-06-26)
 
 Rev7.1 contains minor errata fixes intended to improve captured audio.
 
-## Rev7.2
+## Rev7.2 (2026-06-28)
 
 Rev7.2 changes the secondary HDMI input connector from a male connector to a female connector.
 

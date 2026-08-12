@@ -1,3 +1,4 @@
+<PRE><CODE>
 % DEV=/dev/ttyUSB6 make dfu
 make -C src -f /net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/Rules.mk FF_OSD.elf FF_OSD.bin FF_OSD.hex
 make[1]: Entering directory '/net/dex/home/cdh/projects/amiga_av_to_hdmi/flashfloppy-osd-avhdmi/src'
@@ -72,3 +73,4 @@ Device CPU  : Cortex-M3
 RUNNING Program ... 
   Address:      : 0x8000000
 Start operation achieved successfully
+</CODE></PRE>
