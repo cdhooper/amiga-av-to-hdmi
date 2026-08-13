@@ -36,7 +36,8 @@ is required. This adapter board has two connectors (HDMI male and male
 and then both the Pi and the adapter will be plugged in to the
 Amiga **AV to HDMI board** at the same time.
 
-Set the Pi and adapter board face up on your desk
+Set the Pi and adapter board face up on your area.
+
 <IMG SRC="../img/2026_08_10_connecting_adapter_to_pi_1.jpg" WIDTH="60%">
 
 Plug the adapter board into the Pi.
