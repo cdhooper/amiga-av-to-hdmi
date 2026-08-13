@@ -13,59 +13,23 @@ The board is designed for the A2000 and A3000 Video Slot. It also works with the
 
 <IMG SRC="img/2026_08_09_amiga_av_to_hdmi.jpg" WIDTH="70%">
 
-## Hardware revisions
-
-The hardware has evolved substantially since the original design. The current revision history is documented in [Hardware Revisions](doc/hw_revisions.md).
-
-In particular, **Rev6** introduced the integrated STM32F103 FlashFloppy OSD controller, HD Audio circuit, and HDMI switch. **Rev7.1** added a CH340 USB-to-serial interface. and **Rev7.2** changes the secondary HDMI input from a male connector to a female connector.
-
-## System architecture
-
-At a high level, the board consists of four functional sections:
-
-```text
-                    Amiga Video Slot             Gotek        Amiga
-                           |                   FlashFloppy   Keyboard
-             +-------------+----------+            |             |
-             |                        |            |             |
-     Digital Amiga video         Amiga audio       |             |
-             |                        |          STM32 FlashFloppy OSD
-             v                        v            |       |
-    Video Capture (CPLD)           HD Audio        |       |
-             |                   Capture (PCM)    OSD    Switch
-             v                        |            |     Control
-      Raspberry Pi Zero <-------------+            |       |
-       + RGBtoHDMI      <--------------------------+       |
-             |                                             |
-             v                                             |
-        HDMI output                                        |
-             |      +--------------------------------------+
-             v     /
-        HDMI switch <------ Secondary HDMI input
-             |
-             v
-      Rear HDMI connector
-```
-
-The STM32F103 is connected to the FlashFloppy Gotek and to the Amiga keyboard. It generates the FlashFloppy OSD data which is incorporated into the Pi's video output.
-
 ## Documentation
 
 | Document | Description |
 | --- | --- |
-| [Hardware Revisions](doc/hw_revisions.md) | Hardware revision history and the major differences between revisions. |
-| [Hardware Build Guide](doc/hw_build.md) | Building the PCB, installing components, programming the programmable devices, and installing the Raspberry Pi. |
-| [Hardware Configuration](doc/hw_config.md) | Configuration of the Raspberry Pi, video capture, HDMI routing, audio, and STM32 interfaces. |
-| [FlashFloppy OSD](doc/flashfloppy_osd.md) | Building and installing the custom STM32F103 FF OSD firmware and connecting it to FlashFloppy. |
-| [Amiga Installation](doc/amiga_install.md) | Installing the completed board in an A2000/A3000 and connecting the peripheral wiring. |
-| [Using the Board](doc/usage.md) | Normal operation, HDMI switching, FlashFloppy OSD, keyboard control, and audio. |
+| [Hardware Build Guide](doc/hw_build.md) | Building the PCB and component soldering guide. |
+| [Amiga Installation](doc/amiga_install.md) | Assembling the Pi, HDMI adapter, and AV to HDMI boards, setting jumpers, and installing in your Amiga. |
+| [Hardware Configuration](doc/hw_config.md) | CPLD programming, Pi setup, including Audio and FlashFloppy OSD. |
+| [FlashFloppy OSD](doc/flashfloppy_osd.md) | Installing and configuring the custom FlashFloppy OSD firmware. Keyboard control keystrokes are also covered. |
 | [Troubleshooting](doc/troubleshooting.md) | Diagnostic information for common installation and operating problems. |
+| [Hardware Revisions](doc/hw_revisions.md) | Hardware revision history and the major differences between revisions. |
+| [Hardware Architecture](doc/hw_architecture.md) | Hardware architecture of the Amiga AV to HDMI board. |
 
 ## Raspberry Pi software
 
 The Raspberry Pi runs the multi-platform vintage-hardware [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI) software, which does Amiga video conversion to HDMI.
 
-Consult the RGBtoHDMI documentation for Raspberry Pi software installation, SD-card preparation, configuration files, profiles, and display settings. It is recommened that you use "Amiga 2000" for the profile, and "Amiga 2000 60Hz" or "Amiga 2000 50 Hz" for the Sub-Profile.
+Consult the RGBtoHDMI documentation for Raspberry Pi software installation, SD-card preparation. As detailed in the [Hardware Configuration](doc/hw_config.md) document, it is recommened that you use "Amiga 2000" for the profile, and "Amiga 2000 60Hz" or "Amiga 2000 50 Hz" for the Sub-Profile.
 
 ## FlashFloppy OSD software
 
@@ -80,45 +44,13 @@ This is a board-specific fork of [keirf/flashfloppy-osd](https://github.com/keir
 
 See [FlashFloppy OSD](doc/flashfloppy_osd.md) for board-specific installation and configuration instructions.
 
-## FlashFloppy configuration
-
-The board does not replace FlashFloppy itself. A compatible Gotek must still be running FlashFloppy firmware.
-
-For general FlashFloppy setup, see the [FlashFloppy Initial Setup](https://github.com/keirf/flashfloppy/wiki/Initial-Setup) documentation.
-
-For FF OSD connections, see the [FlashFloppy OSD Hardware Connections](https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections) documentation.
-
-## Building the hardware
-
-This repository contains the hardware design files. The exact bill of materials, component values, footprints, assembly drawings, and programmable-device files are revision-specific.
-
-Before ordering or assembling a board:
-
-1. Identify the PCB revision.
-2. Read [Hardware Revisions](doc/hw_revisions.md).
-3. Use the schematic and PCB files for that exact revision.
-4. Use the revision-specific BOM rather than assuming that a component from another revision is interchangeable.
-5. Complete programming and configuration before installing the board in an Amiga.
-
-See [Hardware Build Guide](doc/hw_build.md).
-
 ## Installing in an Amiga
 
-The board is intended to plug directly into the Video Slot. The Raspberry Pi and HDMI hardware are mounted on the board so that the HDMI connection can be made from the rear of the computer.
+<IMG SRC="img/2026_08_10_av_to_hdmi_with_keyboard_and_gotek_conn.jpg" WIDTH="60%">
 
-**Power off the Amiga before installing or removing the board.**
+The board is intended to plug directly into the Amiga Video Slot. The Raspberry Pi and HDMI hardware are mounted on the board so that the HDMI connection is made from the rear of the computer.
 
-See [Hardware Revisions](doc/hw_revisions.md) and the assembly documentation before fitting the Pi.
-
-See [Amiga Installation](doc/amiga_install.md).
-
-## Design background
-
-The Rev1 and Rev2 designs were based on the [Amiga-Digital-Video](https://github.com/c0pperdragon/Amiga-Digital-Video) Denise-socket design.
-
-Rev3 and Rev4 moved to a CPLD-based video capture architecture, based loosely on the [LinuxJedi AmigaRGBtoHDMI](https://github.com/LinuxJedi/AmigaRGBtoHDMI) work. The CPLD samples CSYNC to capture video timing rather than reconstructing the 7 MHz clock, improving capture reliability.
-
-All revisions use the [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI) software on the Raspberry Pi.
+See [Amiga Installation](doc/amiga_install.md) for installation details.
 
 ## Open-source hardware
 

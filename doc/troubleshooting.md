@@ -5,8 +5,10 @@ Troubleshooting is easiest when the system is divided into functional blocks.
 ```text
 Amiga video -> capture/CPLD -> Raspberry Pi/RGBtoHDMI -> HDMI switch -> display
 Amiga audio -> HD Audio capture ----------------^        ^  ^
-FlashFloppy -> STM32 FF OSD -----------------------------/  |
-Secondary HDMI source -> HDMI switch -----------------------/
+Secondary HDMI source -> HDMI switch --------------------/  |
+FlashFloppy -> FlashFloppy OSD -----------------------------/
+Amiga Keyboard-----^  ^
+Gotek OLED output-----/
 ```
 
 ## No HDMI output
@@ -15,12 +17,11 @@ Check:
 
 1. Amiga power.
 2. Board seating in the Video Slot.
-3. Raspberry Pi power.
-4. Raspberry Pi orientation.
-5. RGBtoHDMI SD card.
-6. HDMI cable.
-7. HDMI display input.
-8. HDMI switch selection.
+3. Raspberry Pi orientation and seating.
+4. RGBtoHDMI SD card.
+5. HDMI cable.
+6. HDMI display input selection.
+7. Amiga AV to HDMI switch setting.
 
 If the Pi boots but no Amiga video is displayed, continue with the video-capture checks below.
 
@@ -28,7 +29,9 @@ If the Pi boots but no Amiga video is displayed, continue with the video-capture
 
 The Pi should be face-down on the Amiga AV to HDMI board, with the
 mini HDMI connector facing the rear HDMI connector.
-An incorrectly oriented Pi can cause serious problems.
+An incorrectly oriented Pi can cause serious problems. You should
+have previously installed the mini HDMI to 2x8 header adapter in the Pi,
+and both of these are mounted together on the Amiga AV to HDMI board.
 
 ## Video sparkle or unstable capture
 
@@ -51,20 +54,19 @@ Check:
 
 1. FlashFloppy is running on the Gotek.
 2. The STM32 status LED is on. This also indicates the correct `flashfloppy-osd-avhdmi` firmware is installed.
-3. The Gotek display interface wiring is correct.
-4. FlashFloppy software is new enough to support FF OSD.
-5. RGBtoHDMI is configured to display the FF OSD data.
+3. The Gotek display interface wiring is correct. You should connect the I2C SCL, SDA, and GND lines to appropriate pins on the Gotek.
+4. FlashFloppy software is new enough to support FlashFloppy OSD.
+5. RGBtoHDMI is configured to display the FlashFloppy OSD data.
     `Settings / FFOSD Overlay = On`
 
 ## No keyboard control
 
 Verify:
 
-- The board revision supports the integrated STM32.
-- The correct board-specific firmware is installed.
-- The Amiga keyboard is operating normally.
-- The STM32 keyboard interface is correctly connected.
-- Keyboard control is enabled in the firmware/configuration.
+1. The Amiga keyboard is operating normally.
+2. You have chosen the correct location on the Amiga motherboard to tap the KBCLK and KBDAT pins.
+3. The connection to the Amiga AV to HDMI board has been made for KBCLK and KBDAT.
+4. The correct board-specific FlashFloppy OSD firmware is installed.
 
 ## No audio, quiet audio, or mono audio
 
@@ -72,7 +74,7 @@ Check:
 
 1. Audio circuit assembly.
 2. Motherboard audio connections are not shorted by a bad cable.
-3. Several Amiga models require audio cables to be inserted to eliminate mono Audio.
+3. Several Amiga models require the RCA audio cables to be inserted to eliminate mono Audio.
 4. Your monitor supports HDMI audio, and specifically the version that the RGBtoHDMI provides. HDMI audio is a digital format and not all devices are compatible.
 5. RGBtoHDMI Audio is configured as Enabled.
 
@@ -85,21 +87,18 @@ Check:
 1. The secondary HDMI source is powered.
 2. The source produces a valid HDMI signal.
 3. The HDMI cable is correct.
-4. The connector type matches the board revision.
-5. The HDMI switch is selecting the secondary input.
-6. Soldering of the HDMI switch. Since this is a device, if soldered manually, requires hot air soldering, it's possible that not all pins are making contact. It may be necessary to re-flow or re-solder this part.
-
-Rev7.2 uses a female secondary HDMI connector; earlier revisions use a male connector.
+4. The HDMI switch is selecting the secondary input.
+5. Soldering of the HDMI switch. Since this is a device, if soldered manually, requires hot air soldering, it's possible that not all pins are making contact. It may be necessary to re-flow or re-solder this part. With adequate flux. re-flow may be done with a fine tip soldering iron around the edges of the chip.
 
 ## CH340 serial interface not detected
 
-1. Connect the USB cable.
+1. Check the USB cable. A freshly soldered board may leave non-conducting flux in the USB-C connector, and it may be necessary to clean the connector with isopropyl alcohol.
 2. Verify that the host operating system has a CH340 driver installed (Linux natively supports this part, but Windows requires a driver).
 3. Check that the host operating system detects a USB serial device.
 4. Verify CH340 and USB-C connector soldering.
 5. Verify USB data connections.
 
-If the CH340 is detected but the STM32 is not responding, troubleshoot the serial path and STM32 firmware separately.
+If the CH340 is detected but the STM32 is not responding, troubleshoot the serial path and STM32 firmware separately. It's not necessary for the Amiga to be powered on for the CH340 to be detected, but the Amiga must be powered on for the STM32 to respond.
 
 ## Board causes Amiga instability
 
@@ -125,16 +124,16 @@ Before diagnosing a hardware problem, record:
 - Raspberry Pi model.
 - RGBtoHDMI software revision.
 - FlashFloppy version.
-- FF OSD firmware revision.
+- FlashFloppy OSD firmware revision.
 - Amiga model.
 - Symptoms and whether they occur before or after RGBtoHDMI starts.
 
-This information is important because the board's video capture, Pi mounting, HDMI, audio, and FF OSD implementations are still evolving.
+This information is important because the board's video capture, Pi mounting, HDMI, audio, and FlashFloppy OSD implementations are still evolving.
 
 ## Useful upstream documentation
 
 - [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI)
 - [RGBtoHDMI Hardware Guide](https://github.com/hoglet67/RGBtoHDMI/wiki/Hardware-Guide)
 - [FlashFloppy Initial Setup](https://github.com/keirf/flashfloppy/wiki/Initial-Setup)
-- [FF OSD Hardware Connections](https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections)
-- [FF OSD Firmware Programming](https://github.com/keirf/flashfloppy-osd/wiki/Firmware-Programming)
+- [FlashFloppy OSD Hardware Connections](https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections)
+- [FlashFloppy OSD Firmware Programming](https://github.com/keirf/flashfloppy-osd/wiki/Firmware-Programming)

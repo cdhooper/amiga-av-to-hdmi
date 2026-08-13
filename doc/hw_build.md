@@ -2,7 +2,12 @@
 
 This guide describes the recommended build sequence for an Amiga AV to HDMI board and the Pi video adapter.
 
-Because the PCB has multiple hardware revisions, **the schematic and BOM for the exact PCB revision being built are authoritative**. Component values and assembly details must not be copied between revisions without checking the design files. It is recommended that you use the latest revision when building a new board.
+Because the PCB has multiple hardware revisions, use the relevant schematic and BOM for the exact PCB revision being built. It is recommended that you use the latest revision when building a new board.
+
+1. Have the PCBs built.
+2. Identify the PCB revision.
+3. Assemble the PCB using the BOM for that specific revision.
+4. It is not necessary to program anything, other than the Pi SD card before installation in the Amiga.
 
 ## 1. Have the PCBs built
 

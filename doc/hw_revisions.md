@@ -4,6 +4,12 @@ This document records the major hardware changes in the Amiga AV to HDMI board.
 
 The board has gone through several iterations, each improving on the previous.
 
+The Rev1 and Rev2 designs were based on the [Amiga-Digital-Video](https://github.com/c0pperdragon/Amiga-Digital-Video) Denise-socket design.
+
+Rev3 and Rev4 moved to a CPLD-based video capture architecture, based loosely on the [LinuxJedi AmigaRGBtoHDMI](https://github.com/LinuxJedi/AmigaRGBtoHDMI) work. The CPLD samples CSYNC to capture video timing rather than reconstructing the 7 MHz clock, improving capture reliability.
+
+**Rev6** introduced the integrated STM32F103 FlashFloppy OSD controller, HD Audio circuit, and HDMI switch. **Rev7.1** added a CH340 USB-to-serial interface. and **Rev7.2** changes the secondary HDMI input from a male connector to a female connector.
+
 ## Rev1 (2021-02-06)
 
 The Rev1 design is based on the Denise-socket [Amiga-Digital-Video](https://github.com/c0pperdragon/Amiga-Digital-Video) design for OCS and ECS Amigas using a 48-pin DIP Denise.

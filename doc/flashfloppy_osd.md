@@ -1,6 +1,6 @@
 # FlashFloppy OSD
 
-The Amiga AV to HDMI board integrates an STM32F103 running a board-specific version of FlashFloppy OSD.
+The Amiga AV to HDMI board integrates an STM32F103 running a board-specific version of FlashFloppy OSD. The board does not replace FlashFloppy itself. A compatible Gotek must still be running FlashFloppy firmware.
 
 The firmware repository is:
 
@@ -12,7 +12,7 @@ The project is a fork of:
 
 [keirf/flashfloppy-osd](https://github.com/keirf/flashfloppy-osd)
 
-## What FF OSD provides
+## What FlashFloppy OSD provides
 
 - FlashFloppy display output on the Amiga's HDMI display.
 - Optional control of FlashFloppy using the Amiga keyboard.
@@ -28,13 +28,13 @@ The upstream FlashFloppy documentation describes the display configuration and t
 
 ## Hardware connection
 
-The Amiga AV to HDMI board integrates the FF OSD controller, so an external FF OSD board is not required.
+The Amiga AV to HDMI board integrates the FlashFloppy OSD controller, so an external FlashFloppy OSD board is not required.
 
 The STM32 interface to the Gotek captures the FlashFloppy OSD display interface.
 
-Connections relative to the upstream FF OSD hardware documentation:
+Connections relative to the upstream FlashFloppy OSD hardware documentation:
 
-| Signal | Original BluePill FF OSD connection | Amiga AV to HDMI connection |
+| Signal | Original BluePill FlashFloppy OSD connection | Amiga AV to HDMI connection |
 | --- | :---: | --- |
 | SCL | B6 | Gotek OLED I2C **SCL** |
 | SDA | B7 | Gotek OLED I2C **SDA** |
@@ -314,12 +314,18 @@ to change operation of both the display and also FlashFloppy.
 | Ctrl-Alt-KP)        | Video VGA |
 | Ctrl-Alt-KP/        | Video Auto |
 
+## FlashFloppy configuration
+
+For general FlashFloppy setup, see the [FlashFloppy Initial Setup](https://github.com/keirf/flashfloppy/wiki/Initial-Setup) documentation.
+
+For FF OSD connections, see the [FlashFloppy OSD Hardware Connections](https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections) documentation.
+
 ## Upstream documentation
 
 Useful upstream references:
 
-- [FF OSD Hardware Connections](https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections)
-- [FF OSD Building From Source](https://github.com/keirf/flashfloppy-osd/wiki/Building-From-Source)
-- [FF OSD Firmware Programming](https://github.com/keirf/flashfloppy-osd/wiki/Firmware-Programming)
-- [FF OSD Configuring](https://github.com/keirf/flashfloppy-osd/wiki/Configuring-FF-OSD)
+- [FlashFloppy OSD Hardware Connections](https://github.com/keirf/flashfloppy-osd/wiki/Hardware-Connections)
+- [FlashFloppy OSD Building From Source](https://github.com/keirf/flashfloppy-osd/wiki/Building-From-Source)
+- [FlashFloppy OSD Firmware Programming](https://github.com/keirf/flashfloppy-osd/wiki/Firmware-Programming)
+- [FlashFloppy OSD Configuring](https://github.com/keirf/flashfloppy-osd/wiki/Configuring-FF-OSD)
 - [FlashFloppy Initial Setup](https://github.com/keirf/flashfloppy/wiki/Initial-Setup)
