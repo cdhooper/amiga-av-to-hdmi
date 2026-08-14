@@ -2,15 +2,15 @@
 
 The Amiga AV to HDMI board integrates an STM32F103 running a board-specific version of FlashFloppy OSD. The board does not replace FlashFloppy itself. A compatible Gotek must still be running FlashFloppy firmware.
 
-The firmware repository is:
+The FlashFloppy OSD firmware repository is:
 
-[cdhooper/flashfloppy-osd-avhdmi](https://github.com/cdhooper/flashfloppy-osd-avhdmi)
+> [cdhooper/flashfloppy-osd-avhdmi](https://github.com/cdhooper/flashfloppy-osd-avhdmi)
 
-[Pre-compiled release binaries are available](https://github.com/cdhooper/flashfloppy-osd-avhdmi/releases)
+[Pre-compiled release binaries](https://github.com/cdhooper/flashfloppy-osd-avhdmi/releases) are also available
 
 The project is a fork of:
 
-[keirf/flashfloppy-osd](https://github.com/keirf/flashfloppy-osd)
+> [keirf/flashfloppy-osd](https://github.com/keirf/flashfloppy-osd)
 
 ## What FlashFloppy OSD provides
 
@@ -34,12 +34,12 @@ The STM32 interface to the Gotek captures the FlashFloppy OSD display interface.
 
 Connections relative to the upstream FlashFloppy OSD hardware documentation:
 
-| Signal | Original BluePill FlashFloppy OSD connection | Amiga AV to HDMI connection |
-| --- | :---: | --- |
-| SCL | B6 | Gotek OLED I2C **SCL** |
-| SDA | B7 | Gotek OLED I2C **SDA** |
-| VCC | 3.3V | DO NOT CONNECT |
-| GND | G | Gotek OLED I2C **GND** |
+> | Signal | Original BluePill FlashFloppy OSD connection | Amiga AV to HDMI connection |
+> | --- | :---: | --- |
+> | SCL | B6 | Gotek OLED I2C **SCL** |
+> | SDA | B7 | Gotek OLED I2C **SDA** |
+> | VCC | 3.3V | DO NOT CONNECT |
+> | GND | G | Gotek OLED I2C **GND** |
 
 It is not necessary to add pull-up resistors on the I2C signals, as the
 Amiga AV to HDMI board integrates these.
@@ -48,26 +48,39 @@ For the complete upstream connection description, see [Hardware Connections](htt
 
 ## Building the firmware
 
-The board-specific firmware repository contains the source, Makefile, and build instructions.
+The board-specific firmware repository contains the source, Makefile, and
+build instructions. It is not required to build the firmware, as release
+images are available. One would build the firmware if wanting the latest
+fixes or enhancements which have not yet been released.
 
 Clone the repository from a Linux host with the gcc ARM compiler installed:
 
 ```sh
-git clone https://github.com/cdhooper/flashfloppy-osd-avhdmi.git
-cd flashfloppy-osd-avhdmi
-make
+        git clone https://github.com/cdhooper/flashfloppy-osd-avhdmi.git
+        cd flashfloppy-osd-avhdmi
+        make
 ```
 
 Once the firmware is successfully built, the firmware will be in the
 `src/FF_OSD.bin` file.
 
-Firmware built directly from _keirf/flashfloppy-osd_
+Firmware built directly from
+[keirf/flashfloppy-osd](https://github.com/keirf/flashfloppy-osd)
 will not work on the Amiga AV to HDMI board because that firmware assumes
 a fixed 8 MHz input clock to the STM32.
 
 ## Programming the STM32
 
-Rev7 and later boards include a CH340 USB-to-serial interface connected to the STM32. If your board is not a Rev 7 or higher, you will need to procure a USB to TTL serial adapter, such as the FT232RL, and connect that to the Console port of the Amiga AV to HDMI board.
+Rev7 and later boards include a CH340 USB-to-serial interface connected to
+the STM32. If your board is Rev6, you will need to procure a USB to TTL
+serial adapter, such as the FT232RL, and connect that to the Console port
+of the Amiga AV to HDMI board. In the case of the Rev6, you would set the
+DFU jumper instead of holding the DFU button while programming.
+
+With the Amiga AV to HDMI board installed, **Power on your Amiga**.
+Although the CH340 will show up on your host with the Amiga off,
+the Raspberry Pi must be installed and the Amiga must be powered on
+for the STM32 to respond.
 
 The exact programming procedure depends on the bootloader and programming tools used. There are several tool choices available.
 
@@ -76,56 +89,84 @@ The exact programming procedure depends on the bootloader and programming tools 
    [FlashFloppy OSD repository](https://github.com/cdhooper/flashfloppy-osd-avhdmi)
    or you may grab a copy of the latest release here:
    [FlashFloppy OSD releases](https://github.com/cdhooper/flashfloppy-osd-avhdmi/releases).
-3. Program the firmware. From Linux:
-        Determine which tty was connected. Example from dmesg output:
+3. Determine which device the CH340 appeared as.
+
+> From Linux, determine which tty was connected. Example from dmesg output:
 ```
                 ch341-uart converter now attached to ttyUSB0
 ```
+
+> From Windows, determine the COM port using the Windows Device Manager.
+
+4. Program the firmware.
+
+---
+
 ### Method 1:
 
 1. Install [STM32CubeProgrammer](https://www.st.com/content/st_com/en/stm32cubeprogrammer.html)
-2. Hold down the DFU button next to the STM32 and enter the following, making sure to change the /dev/ttyUSB0 below to match where the CH340 appeared:
+2. On Linux hold down the DFU button next to the STM32 and enter the following, making sure to change the /dev/ttyUSB0 below to match where the CH340 appeared:
 ```
                 cd flashfloppy-osd-avhdmi
                 DEV=/dev/ttyUSB0 make dfu
 ```
 
-[Example output](osd_prog_stm32cube.txt)
+>> [Example output](osd_prog_stm32cube.txt)
 
-or
+> or
 ```
                 DEV=/dev/ttyUSB0
                 sudo STM32_Programmer_CLI -c port=$DEV br=115200 -v -w FF_OSD.bin 0x08000000
                 sudo STM32_Programmer_CLI -c port=$DEV br=115200 -g 0x08000000
 ```
+
+> or if you are using **Windows**, you can also use the
+> STM32_Programmer_CLI from Windows. First add the path to the
+> programmer to your Windows PATH environment variable.
+> Typically, it's installed here:
+```
+                C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin
+```
+> Next you need to determine the COM port where the CH340 driver has
+> registered the USB device using Windows Device Manager. Assuming it's
+> COM3, while holding down the DFU button, use commands similar to the above:
+```
+                STM32_Programmer_CLI -c port=COM3 br=115200 -v -w FF_OSD.bin 0x08000000
+                STM32_Programmer_CLI -c port=COM3 br=115200 -g 0x08000000
+```
+
+---
+
 ### Method 2:
 
-Install [stm32loader](https://github.com/jsnyder/stm32loader)
+> On Linux, install [stm32loader](https://github.com/jsnyder/stm32loader)
 ```
                  pip install stm32loader
 ```
 
-Now that the programmer is installed, hold down the DFU button
-next to the STM32 and use the following command to program.
-Be sure to change /dev/ttyUSB0 below to where the CH340 appeared:
+> Now that the programmer is installed, hold down the DFU button next to
+> the STM32 and use the below command to program. *Be sure to change*
+> `/dev/ttyUSB0` *below to where the CH340 appeared:*
 
 ```
                 cd flashfloppy-osd-avhdmi/src
                 sudo stm32loader --port /dev/ttyUSB0 -b 115200 -a 0x08000000 -w -v FF_OSD.bin -g 0x08000000 -f F1
 ```
 
+---
+
 ### Method 3:
 
-Install the open source stm32flash
+> If on Linux, install the open source stm32flash
 ```
                 git clone https://github.com/FYSETC/stm32flash
                 cd stm32flash
                 make install
 ```
 
-Now that the programmer is installed, hold down the DFU button
-next to the STM32 and use the following command to program.
-Be sure to change /dev/ttyUSB0 below to where the CH340 appeared:
+> Now that the programmer is installed, hold down the DFU button next to
+> the STM32 and use the following command to program. Be sure to change
+> /dev/ttyUSB0 below to where the CH340 appeared:
 
 ```
                 cd flashfloppy-osd-avhdmi/src
@@ -133,26 +174,51 @@ Be sure to change /dev/ttyUSB0 below to where the CH340 appeared:
                 sudo stm32flash -b 115200 -vw FF_OSD.hex $DEV
                 sudo stm32flash -b 115200 -h 0 $DEV
 ```
+
+> or if you are on **Windows**, the stm32flash utility is also available.
+> Start by downloading the latest binaries from here:
+```
+                https://sourceforge.net/projects/stm32flash/files/
+```
+> The `stm32flash-0.7-binaries.zip` file contains executable stm32flash
+> programs for Windows, Linux, and MacOS. Use a newer version if available.
+> Once you have the program, put it in your Windows path.
+
+> Next you need to determine the COM port where the CH340 driver has
+> registered the USB device using Windows Device Manager. Assuming it's
+> COM3, while holding down the DFU button, use commands similar to the above:
+```
+                stm32flash -b 115200 -vw FF_OSD.hex COM3
+                stm32flash -b 115200 -h 0 COM3
+```
+
+---
+
 ### Method 4:
 
-Use ST-Link hardware to program the STM32.
-Get, build, and install stutils:
+> Use ST-Link hardware to program the STM32.
+> Get, build, and install stutils:
 ```
                 git clone https://github.com/texane/stlink.git stutils
                 make -C stutils CMAKEFLAGS="-DCMAKE_INSTALL_PREFIX=. -DCMAKE_INSTALL_FULL_DATADIR=." -j4
                 sudo make -C stutils install
 ```
-Connect the programmer to the appropriate STM32 SWD pins
-on the Amiga AV to HDMI board.
-Use the following command to program:
+> Connect the programmer to the appropriate STM32 SWD pins on the
+> Amiga AV to HDMI board. Use the following command to program:
 ```
                 sudo st-flash --reset write FF_OSD.bin 0x08000000
 ```
 
-[Example output](osd_prog_st-link_stutils.txt)
+>> [Example output](osd_prog_st-link_stutils.txt)
 
-Confirm that the LED on the Amiga AV to HDMI board is now illuminated.
-If not, try a different programming method.
+> or, if you are using **Windows** you can also use the STM32CubeProgrammer
+> to program the firmware through the ST-Link. Follow the ST-Micro
+> [STM32CubeProgrammer documentation](https://dev.st.com/stm32cube-docs/prog/2.23.0/en/index.html).
+
+---
+
+After programming, confirm that the LED on the Amiga AV to HDMI board is now
+illuminated. The FlashFloppy OSD STM32 will turn on this LED when it has initialized. If the LED is off, try a different programming method.
 
 See the section below for how to verify other FlashFloppy OSD features.
 

@@ -11,21 +11,18 @@ Supported systems include:
 - Amiga 4000T, with the video limitations described below.
 - Other reimplemented Amiga models which have a video slot such as A4000TX and AmigaPCI.
 
-### A2000/A3000
+### A2000 / A3000
 
 The A2000 and A3000 are the primary target systems.
 
-The board captures the native digital Amiga video through the Video Slot and sends it to the Raspberry Pi for RGBtoHDMI processing.
+The board captures the native digital Amiga video and analog audio through the Video Slot and sends it to the Raspberry Pi for RGBtoHDMI processing.
 
 ### A4000 limitations
 
 The board also works with the A4000, but it is limited to:
 
-- 12-bit video. The A4000 chipset supports 24-bit video, which will have shading clipped slightly, but will still work fine with capture at 12-bit.
-- OCS resolution screen modes.
-
-Do not expect AGA display modes to work, as they are typically at a faster
-bit rate than what the RGBtoHDMI can capture.
+- 12-bit video. The A4000 chipset supports up to 24-bit video. When clipped to 12 bits, the lower 4 bits of each color are discarded. You will still get reasonable video rendering on the HDMI port.
+- No higher resolutions than the original Amiga OCS screen modes is supported by RGBtoHDMI. Do not expect AGA display modes to work, as they are typically at a faster bit rate than what the RGBtoHDMI can capture.
 
 ## 1. Install the adapter PCB on the Raspberry Pi
 
@@ -107,9 +104,7 @@ The secondary HDMI input is intended for a second internal HDMI source, such as 
 
 On Rev7.2 the secondary HDMI input uses a female HDMI connector. Earlier revisions use a male connector for the secondary HDMI input.
 
-Optionally connect the secondary HDMI input to another device in your Amiga, such as the Z3660.
-
-**NOTE FOR TESTING:** You can install J5 to select video from the secondary internal HDMI connector. If you have installed the FF_OSD software, you can also toggle between the two displays by a quick press of the "DFU" button. Further, if you have attached the Amiga keyboard inputs to the KBDAT and KBCLK header, you can also select between the displays using Ctrl-Amiga-1 and Ctrl-Amiga-2 on the keyboard.
+**NOTE FOR TESTING:** You can install J5 to select video from the secondary internal HDMI connector. If you have installed the FlashFloppy OSD software, you can also toggle between the two displays by a quick press of the "DFU" button. Further, if you have attached the Amiga keyboard inputs to the KBDAT and KBCLK header, you can also select between the displays using Ctrl-Amiga-1 and Ctrl-Amiga-2 on the keyboard.
 
 ## 6. Connect the HDMI output to your monitor
 
@@ -121,11 +116,11 @@ The board can also switch to the secondary internal HDMI source when that source
 
 ## 7. Connect FlashFloppy
 
-The integrated STM32F103 connects to the FlashFloppy Gotek through the FF OSD I2C interface.
+The integrated STM32F103 connects to the FlashFloppy Gotek through the FlashFloppy OSD I2C interface.
 
 Follow [FlashFloppy OSD](flashfloppy_osd.md) for the required Gotek configuration and firmware.
 
-If you are following the standard FlashFloppy OSD guide, do not add an external FF OSD adapter when using the integrated STM32 interface. The STM32 on the Amiga AV to HDMI adapter provides this functionality.
+If you are following the standard FlashFloppy OSD guide, do not add an external FlashFloppy OSD adapter when using the integrated STM32 interface. The STM32 on the Amiga AV to HDMI adapter provides this functionality.
 
 ## 8. Connect the Amiga keyboard
 
