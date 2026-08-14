@@ -1,6 +1,11 @@
 # Amiga AV to HDMI
 
-The **Amiga AV to HDMI** board is an open-source video, audio, and FlashFloppy interface for big-box Amiga computers. It plugs into the Amiga Video Slot and converts to HDMI usign a Raspberry Pi running [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI). Features:
+The **Amiga AV to HDMI** board is an open-source video, audio, and
+FlashFloppy interface for big-box Amiga computers (A2000, A3000, etc).
+It plugs into the Amiga Video Slot and converts to HDMI usign a
+Raspberry Pi running [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI).
+
+Features:
 
 - **Raspberry Pi HDMI output** using the RGBtoHDMI software.
 - **HD Audio capture**, allowing Amiga audio to be included.
@@ -51,6 +56,20 @@ See [FlashFloppy OSD](doc/flashfloppy_osd.md) for board-specific installation an
 The board is intended to plug directly into the Amiga Video Slot. The Raspberry Pi and HDMI hardware are mounted on the board so that the HDMI connection is made from the rear of the computer.
 
 See [Amiga Installation](doc/amiga_install.md) for installation details.
+
+## Quick Start Guide
+
+1. **Prepare the MicroSD Card:**
+   - Download the latest release from [RGBtoHDMI Releases](https://github.com/hoglet67/RGBtoHDMI/releases).
+   - Format a MicroSD card as FAT32 and extract the release files to the root directory.
+2. **Attach the Raspberry Pi:**
+   - Connect your Pi Zero to the Pi HDMI adapter, and seat them together on the Amiga AV to HDMI board.
+3. **Install into the Amiga:**
+   - Power off your Amiga.
+   - Insert the adapter firmly into the Video Slot.
+4. **Connect & Power on:**
+   - Connect a Mini-HDMI to HDMI cable from the board to your monitor.
+   - Power on the Amiga. On first boot, open the RGBtoHDMI OSD using the rear buttons to select the appropriate Amiga video profile.
 
 ## Open-source hardware
 

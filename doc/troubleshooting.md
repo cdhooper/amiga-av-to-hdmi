@@ -23,7 +23,13 @@ Check:
 6. HDMI display input selection.
 7. Amiga AV to HDMI switch setting.
 
-If the Pi boots but no Amiga video is displayed, continue with the video-capture checks below.
+When you power on the Amiga, you should see the led on the Raspberry Pi
+blink as it loads the RGBtoHDMI software from the SD card. This operation
+does not take very long (a few seconds), so you should observe the board
+immediately after turning on power.
+
+If the Pi boots (you can see an OSD Menu when the top button is pressed)
+but no Amiga video is displayed, continue with the video-capture checks below.
 
 ## Raspberry Pi orientation
 

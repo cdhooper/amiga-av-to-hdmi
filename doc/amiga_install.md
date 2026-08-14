@@ -11,9 +11,15 @@ Supported systems include:
 - Amiga 4000T, with the video limitations described below.
 - Other reimplemented Amiga models which have a video slot such as A4000TX and AmigaPCI.
 
+### A2000
+
+A custom flat bracket is required for Amiga 2000 installation, as the
+A2000 video slot is not in line with a standard Zorro slot.
+
 ### A2000 / A3000
 
-The A2000 and A3000 are the primary target systems.
+The A3000 and later models all use a regular Zorro (ISA) card bracked for
+installation of the Amiga AV to HDMI card.
 
 The board captures the native digital Amiga video and analog audio through the Video Slot and sends it to the Raspberry Pi for RGBtoHDMI processing.
 
@@ -24,7 +30,23 @@ The board also works with the A4000, but it is limited to:
 - 12-bit video. The A4000 chipset supports up to 24-bit video. When clipped to 12 bits, the lower 4 bits of each color are discarded. You will still get reasonable video rendering on the HDMI port.
 - No higher resolutions than the original Amiga OCS screen modes is supported by RGBtoHDMI. Do not expect AGA display modes to work, as they are typically at a faster bit rate than what the RGBtoHDMI can capture.
 
-## 1. Install the adapter PCB on the Raspberry Pi
+## 1. Choose an appropriate Raspberry Pi
+
+The Amiga AV to HDMI hardware and the RGBtoHDMI software support
+- Raspberry Pi Zero 1.3
+- Raspberry Pi Zero W
+- Raspberry Pi Zero 2
+- Raspberry Pi Zero 2W
+
+Note that there are versions with and without a 40-pin header preinstalled.
+If you choose to buy a version without the header installed, you must
+solder in your own header. Be sure the header is mounted in a manner
+where you would solder the pins at the back side of the board (the side
+which has no components). The pins should protrude from the side of the
+board with components. This is the normal configuration of a Raspberry Pi
+header.
+
+## 2. Install the adapter PCB on the Raspberry Pi
 
 The Rev7 design allows HDMI from the Pi to be captured without using
 a cable. Instead, a separate tiny [adapter board](../rev6_adapter_4/)
@@ -41,7 +63,7 @@ Plug the adapter board into the Pi.
 
 <IMG SRC="../img/2026_08_10_connecting_adapter_to_pi_2.jpg" WIDTH="60%">
 
-## 2. Install the Raspberry Pi on the Amiga AV to HDMI
+## 3. Install the Raspberry Pi on the Amiga AV to HDMI
 
 Install the Raspberry Pi only after confirming the orientation for the specific PCB revision. Incorrect orientation can cause electrical or mechanical damage.
 The Raspberry Pi must be installed face-down on current revision boards.
@@ -56,7 +78,7 @@ Verify that pins both connectors are fully seated and that neither connector is 
 
 The Amiga AV to HDMI is designed around a Raspberry Pi Zero for RGBtoHDMI processing. The Pi connects to the board through the GPIO connector and supplies the processing platform for the RGBtoHDMI software. There is no major advantage in choosing the Pi Zero 2 over the Pi Zero 1.3.
 
-## 3. Set Amiga AV to HDMI jumpers
+## 4. Set Amiga AV to HDMI jumpers
 
 1. You must install a jumper at each of J1, J2, and J3. If you plan to use the FlashFloppy OSD, install them in the 2-3 position (recommended). Otherwise, you can install them in either 1-2 or 2-3. The advantage to 1-2 is that the Pi will not need to (automatically) overclock to capture audio.
 2. If you want to force video from the secondary HDMI Input on the rear connector, install jumper J5. This is usually done just for debug. If you have a board which offers Ratte control, you can also attach a cable to the Ratte Control header at the top of the board.
@@ -66,7 +88,7 @@ The Amiga AV to HDMI is designed around a Raspberry Pi Zero for RGBtoHDMI proces
 
 The image above shows the recommended jumper settings at the Encoder header and J1, J2, and J3 in the 2-3 position.
 
-## 4. Install the Amiga AV to HDMI in the Amiga
+## 5. Install the Amiga AV to HDMI in the Amiga
 
 Locate the video slot in your Amiga. The Amiga 2000 has the video slot separate from the Zorro slots. All other Amiga models have the video slot in line with a Zorro slot. The Amiga 4000T offers two video slots.
 
@@ -89,7 +111,7 @@ The board connects directly to the Amiga Video Slot. Incorrect installation can 
 5. Verify the orientation of the Amiga AV to HDMI board.
 6. Insert the board fully and evenly.
 7. Verify that the board does not contact nearby chassis metalwork or components.
-## 5. Install secondary HDMI hardware
+## 6. Install secondary HDMI hardware
 
 The board routes the Raspberry Pi HDMI signal through an onboard HDMI switch, and the switched output is connected to the rear-facing HDMI connector. The onboard HDMI switch has two inputs:
 
@@ -106,7 +128,7 @@ On Rev7.2 the secondary HDMI input uses a female HDMI connector. Earlier revisio
 
 **NOTE FOR TESTING:** You can install J5 to select video from the secondary internal HDMI connector. If you have installed the FlashFloppy OSD software, you can also toggle between the two displays by a quick press of the "DFU" button. Further, if you have attached the Amiga keyboard inputs to the KBDAT and KBCLK header, you can also select between the displays using Ctrl-Amiga-1 and Ctrl-Amiga-2 on the keyboard.
 
-## 6. Connect the HDMI output to your monitor
+## 7. Connect the HDMI output to your monitor
 
 The primary HDMI output is at the rear of the Amiga.
 
@@ -114,7 +136,7 @@ Connect a normal HDMI cable from the rear connector your display.
 
 The board can also switch to the secondary internal HDMI source when that source is connected to this board.
 
-## 7. Connect FlashFloppy
+## 8. Connect FlashFloppy
 
 The integrated STM32F103 connects to the FlashFloppy Gotek through the FlashFloppy OSD I2C interface.
 
@@ -122,7 +144,7 @@ Follow [FlashFloppy OSD](flashfloppy_osd.md) for the required Gotek configuratio
 
 If you are following the standard FlashFloppy OSD guide, do not add an external FlashFloppy OSD adapter when using the integrated STM32 interface. The STM32 on the Amiga AV to HDMI adapter provides this functionality.
 
-## 8. Connect the Amiga keyboard
+## 9. Connect the Amiga keyboard
 
 If keyboard control is enabled, the STM32 interfaces with the Amiga keyboard and provides the corresponding FlashFloppy control.
 

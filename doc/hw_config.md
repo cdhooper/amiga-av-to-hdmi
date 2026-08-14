@@ -35,7 +35,7 @@ The Raspberry Pi runs the [RGBtoHDMI](https://github.com/hoglet67/RGBtoHDMI) sof
 Follow the RGBtoHDMI documentation for information on SD card preparation including RGBtoHDMI software installation. The general steps are:
 1. Format an SD Card with FAT32. You must start with a blank card.
 2. Download the [latest release](https://github.com/IanSB/RGBtoHDMI/wiki/Latest-Software) of the RGBtoHDMI software. You may need a beta release for audio support.
-3. Extract the zip file directly to the SD Card.
+3. Extract the zip file directly to the SD Card. No modifications are necessary.
 4. Unmount and eject the SD Card.
 
 If you are setting up a new Amiga AV to HDMI, when the RGBtoHDMI software boots, it will first detect the CPLD is not programmed and give you options to select firmware for the device.
